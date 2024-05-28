@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://be22ov7r1f8mm"]
+
+[ext_resource type="Texture2D" uid="uid://hnrgawik20dd" path="res://Images/Terrain (16x16).png" id="1_gxhi2"]
+[ext_resource type="Script" path="res://scenes/objects/destructable_platform.gd" id="1_nisrq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cimqr"]
+size = Vector2(48, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kj8ft"]
+size = Vector2(48, 2)
+
+[node name="DestructablePlatform" type="StaticBody2D"]
+script = ExtResource("1_nisrq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_gxhi2")
+region_enabled = true
+region_rect = Rect2(272, 32, 48, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_cimqr")
+
+[node name="PlayerOnTop" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOnTop"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_kj8ft")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="PlayerOnTop" to="." method="_on_player_on_top_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
