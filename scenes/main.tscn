@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctd1ep8frtwrt"]
+[gd_scene load_steps=17 format=3 uid="uid://ctd1ep8frtwrt"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_u00c2"]
 [ext_resource type="Texture2D" uid="uid://dpbhsa74vn7qo" path="res://Images/Green.png" id="1_uakhw"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cn6t1kgl1i5rn" path="res://scenes/objects/moving_platform.tscn" id="10_d8dw2"]
 [ext_resource type="PackedScene" uid="uid://be22ov7r1f8mm" path="res://scenes/objects/destructable_platform.tscn" id="11_yc8m5"]
 [ext_resource type="PackedScene" uid="uid://bawv65k73wrky" path="res://scenes/player_finish.tscn" id="12_8slv7"]
+[ext_resource type="PackedScene" uid="uid://dwdbtsuk4dh5u" path="res://scenes/panel.tscn" id="13_n8mlv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hnq2x"]
 texture = ExtResource("2_6v0jt")
@@ -605,26 +606,7 @@ position = Vector2(3517, 272)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="Panel" parent="UI"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -237.0
-offset_bottom = 105.0
-grow_horizontal = 0
-
-[node name="PointsLabel" type="Label" parent="UI/Panel"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 25
-text = "POINTS: "
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Panel" parent="UI" instance=ExtResource("13_n8mlv")]
 
 [connection signal="body_entered" from="SceneObjects/Melons/Melon1" to="SceneObjects/CharacterBody2D" method="_on_melon_body_entered"]
 [connection signal="body_entered" from="SceneObjects/Melons/Melon1" to="SceneObjects/Melons/Melon1" method="_on_body_entered"]
