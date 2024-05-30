@@ -31,7 +31,7 @@ _data = {
 
 [node name="Platform" type="AnimatableBody2D" parent="."]
 texture_filter = 1
-position = Vector2(84.7418, 0)
+position = Vector2(48.753, 0)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Platform"]
