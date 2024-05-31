@@ -495,9 +495,8 @@ sources/0 = SubResource("TileSetAtlasSource_hnq2x")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3w5eq"]
 size = Vector2(1027, 20)
 
-[node name="Node" type="Node" node_paths=PackedStringArray("level_start_pos")]
+[node name="Node" type="Node"]
 script = ExtResource("1_u00c2")
-level_start_pos = NodePath("SceneObjects/PlayerStart")
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
@@ -608,6 +607,7 @@ position = Vector2(3517, 272)
 
 [node name="Panel" parent="UI" instance=ExtResource("13_n8mlv")]
 
+[connection signal="ready" from="SceneObjects/CharacterBody2D" to="." method="_on_character_body_2d_ready"]
 [connection signal="body_entered" from="SceneObjects/Melons/Melon1" to="SceneObjects/CharacterBody2D" method="_on_melon_body_entered"]
 [connection signal="body_entered" from="SceneObjects/Melons/Melon1" to="SceneObjects/Melons/Melon1" method="_on_body_entered"]
 [connection signal="body_entered" from="SceneObjects/Melons/Melon2" to="SceneObjects/CharacterBody2D" method="_on_melon_body_entered"]

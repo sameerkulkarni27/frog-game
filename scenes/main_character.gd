@@ -9,6 +9,10 @@ const JUMP_VELOCITY = -450.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var last_direction = 1
 var controllable = true
+var start_position : Vector2
+
+func _ready():
+	global_position = start_position
 
 func _physics_process(delta):
 	if (!controllable):
@@ -41,14 +45,16 @@ func _physics_process(delta):
 	
 	sprite_2d.flip_h = last_direction < 0
 
-func reset(sprite_2d):
+func reset():
 	visible = true
 	controllable = true
-	
+	global_position = start_position
+	velocity = Vector2.ZERO
 
 func char_death():
 	print("Player died.")
 	visible = false
 	controllable = false
-	
-	reset(sprite_2d)
+	await get_tree().create_timer(1).timeout
+	reset()
+
