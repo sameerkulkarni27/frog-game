@@ -52,7 +52,7 @@ func reset():
 	velocity = Vector2.ZERO
 
 func char_death():
-	print("Player died.")
+	#print("Player died.")
 	visible = false
 	controllable = false
 	await get_tree().create_timer(1).timeout
