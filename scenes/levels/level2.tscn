@@ -517,7 +517,7 @@ border_width_right = 5
 border_width_bottom = 5
 border_blend = true
 
-[node name="Node" type="Node"]
+[node name="Level2" type="Node"]
 script = ExtResource("1_mix3i")
 
 [node name="GameManager" type="Node" parent="."]

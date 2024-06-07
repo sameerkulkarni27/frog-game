@@ -10,9 +10,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var last_direction = 1
 var controllable = true
 var start_position : Vector2
+var jump_count = 0
+var jump_max = 1
 
 func _ready():
 	global_position = start_position
+	check_level()
 
 func _physics_process(delta):
 	if (!controllable):
@@ -26,12 +29,20 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-		sprite_2d.animation = "jumping"
+		if (jump_count == 1):
+			sprite_2d.animation = "jumping"
+		elif (jump_count == 2):
+			sprite_2d.animation = "double_jump"
 
+	if jump_count != 0 and is_on_floor():
+		jump_count = 0 
+	
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	#if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and jump_count < jump_max:
 		velocity.y = JUMP_VELOCITY
-
+		jump_count += 1
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("left", "right")
@@ -58,3 +69,10 @@ func char_death():
 	await get_tree().create_timer(1).timeout
 	reset()
 
+func check_level():
+	var current_level = get_tree().current_scene
+	#print("current level: " + str(current_level.name))
+	if (current_level.name == "Level2"):
+		jump_max = 2
+	else:
+		jump_max = 1
