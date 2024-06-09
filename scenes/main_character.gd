@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -450.0
 @onready var sprite_2d = $Sprite2D
+@onready var animation_player = $AnimationPlayer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -22,18 +23,22 @@ func _physics_process(delta):
 		return
 	# Walking
 	if (velocity.x > 1 || velocity.x < -1):
-		sprite_2d.animation = "running"
+		#sprite_2d.animation = "running"
+		animation_player.play("run_animation")
 	else:
-		sprite_2d.animation = "idle"
+		#sprite_2d.animation = "idle"
+		animation_player.play("idle_animation")
 	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		
 		if (jump_count == 1):
-			sprite_2d.animation = "jumping"
+			#sprite_2d.animation = "jumping"
+			animation_player.play("jump_animation")
 		elif (jump_count == 2):
-			sprite_2d.animation = "double_jump"
+			#sprite_2d.animation = "double_jump"
+			animation_player.play("doublejump_animation")
 
 	if jump_count != 0 and is_on_floor():
 		jump_count = 0
