@@ -1,7 +1,32 @@
-[gd_scene load_steps=22 format=3 uid="uid://dbkhk7360i10g"]
+[gd_scene load_steps=32 format=3 uid="uid://dbkhk7360i10g"]
 
 [ext_resource type="Texture2D" uid="uid://cn4s5pgqin1lf" path="res://Images/Cherries.png" id="1_tnv1b"]
 [ext_resource type="Script" path="res://scenes/cherry.gd" id="1_xh7eq"]
+[ext_resource type="Texture2D" uid="uid://ctr1b2b5iwilj" path="res://Images/Collected.png" id="2_ystq0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nayok"]
+atlas = ExtResource("2_ystq0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyw3b"]
+atlas = ExtResource("2_ystq0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4xn4"]
+atlas = ExtResource("2_ystq0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6a66"]
+atlas = ExtResource("2_ystq0")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vb21"]
+atlas = ExtResource("2_ystq0")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52j3e"]
+atlas = ExtResource("2_ystq0")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cfieh"]
 atlas = ExtResource("1_tnv1b")
@@ -75,6 +100,29 @@ region = Rect2(512, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_nayok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyw3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4xn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6a66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vb21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52j3e")
+}],
+"loop": true,
+"name": &"collected",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cfieh")
 }, {
 "duration": 1.0,
@@ -127,11 +175,59 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 12.0
+"speed": 15.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yd4jv"]
 radius = 15.0
+
+[sub_resource type="Animation" id="Animation_m5p28"]
+resource_name = "collected_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"collected"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_hlqi3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ewmve"]
+_data = {
+"RESET": SubResource("Animation_hlqi3"),
+"collected_animation": SubResource("Animation_m5p28")
+}
 
 [node name="Cherry" type="Area2D"]
 script = ExtResource("1_xh7eq")
@@ -140,10 +236,16 @@ script = ExtResource("1_xh7eq")
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_04dm2")
+animation = &"collected"
 autoplay = "default"
-frame_progress = 0.961086
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yd4jv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ewmve")
+}
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
