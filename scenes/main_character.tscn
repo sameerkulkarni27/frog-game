@@ -379,7 +379,7 @@ _data = {
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_64ety")
-animation = &"running"
+animation = &"idle"
 autoplay = "idle"
 frame = 1
 

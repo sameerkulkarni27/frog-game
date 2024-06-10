@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctd1ep8frtwrt"]
+[gd_scene load_steps=18 format=3 uid="uid://ctd1ep8frtwrt"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_h7a54"]
 [ext_resource type="Script" path="res://scenes/game_manager.gd" id="2_p7l1u"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://be22ov7r1f8mm" path="res://scenes/objects/destructable_platform.tscn" id="10_pp337"]
 [ext_resource type="PackedScene" uid="uid://bawv65k73wrky" path="res://scenes/player_finish.tscn" id="11_sm52b"]
 [ext_resource type="PackedScene" uid="uid://bcgjfrxg64aej" path="res://scenes/obstacles/spikes.tscn" id="12_p3jsf"]
+[ext_resource type="PackedScene" uid="uid://ccc3iq22emyfy" path="res://scenes/collected_particle.tscn" id="13_4fykx"]
 [ext_resource type="PackedScene" uid="uid://dwdbtsuk4dh5u" path="res://scenes/panel.tscn" id="13_iek4r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hnq2x"]
@@ -731,6 +732,9 @@ position = Vector2(3163, 584)
 
 [node name="Spike36" parent="SceneObjects/Spikes" instance=ExtResource("12_p3jsf")]
 position = Vector2(3238, 584)
+
+[node name="CollectedParticle" parent="SceneObjects" instance=ExtResource("13_4fykx")]
+position = Vector2(-10, 8)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
