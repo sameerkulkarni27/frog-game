@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cphe15d2g20ko"]
+
+[ext_resource type="Texture2D" uid="uid://dcwdkdbk0yqae" path="res://Images/Gray.png" id="1_0o0sv"]
+[ext_resource type="Texture2D" uid="uid://ce6d6g6ubxjjc" path="res://Images/FrogGameLogo.png" id="2_k2ku3"]
+
+[node name="MainMenu" type="Node"]
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0o0sv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -600.0
+offset_right = 600.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k2ku3")
