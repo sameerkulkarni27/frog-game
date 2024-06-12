@@ -6,6 +6,9 @@ const JUMP_VELOCITY = -450.0
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 
+@onready var appearingParticle = preload("res://scenes/appearing_particle.tscn")
+@onready var marker_2d = $Marker2D
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var last_direction = 1
@@ -17,6 +20,7 @@ var jump_max = 1
 func _ready():
 	global_position = start_position
 	check_level()
+	char_death()
 
 func _physics_process(delta):
 	if (!controllable):
@@ -63,10 +67,19 @@ func _physics_process(delta):
 	sprite_2d.flip_h = last_direction < 0
 
 func reset():
+	global_position = start_position
+	
+	var appearing = appearingParticle.instantiate()
+	appearing.global_position = marker_2d.global_position
+	get_parent().add_child(appearing)
+	
+	await appearing.animation_finished
+	
 	visible = true
 	controllable = true
-	global_position = start_position
+	#global_position = start_position
 	velocity = Vector2.ZERO
+	
 
 func char_death():
 	#print("Player died.")

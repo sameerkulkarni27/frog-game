@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://cd6bvh4sttuxt"]
+
+[ext_resource type="Texture2D" uid="uid://cblhlsbqykco1" path="res://Images/Appearing (96x96).png" id="1_lnnrl"]
+[ext_resource type="Script" path="res://scenes/appearing_particle.gd" id="2_o4yx2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ppqw"]
+atlas = ExtResource("1_lnnrl")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8a0h"]
+atlas = ExtResource("1_lnnrl")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu5aa"]
+atlas = ExtResource("1_lnnrl")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6pfn"]
+atlas = ExtResource("1_lnnrl")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2yo2"]
+atlas = ExtResource("1_lnnrl")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvvh8"]
+atlas = ExtResource("1_lnnrl")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dctqc"]
+atlas = ExtResource("1_lnnrl")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gkyge"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ppqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8a0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu5aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6pfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2yo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvvh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dctqc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="AppearingParticle" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_gkyge")
+autoplay = "default"
+frame = 1
+frame_progress = 0.923026
+script = ExtResource("2_o4yx2")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

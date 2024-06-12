@@ -391,3 +391,6 @@ shape = SubResource("RectangleShape2D_3axq8")
 libraries = {
 "": SubResource("AnimationLibrary_hq8ld")
 }
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 8)
