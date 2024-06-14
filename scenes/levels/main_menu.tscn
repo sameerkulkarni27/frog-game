@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cphe15d2g20ko"]
+[gd_scene load_steps=4 format=3 uid="uid://cphe15d2g20ko"]
 
 [ext_resource type="Texture2D" uid="uid://dcwdkdbk0yqae" path="res://Images/Gray.png" id="1_0o0sv"]
-[ext_resource type="Texture2D" uid="uid://ce6d6g6ubxjjc" path="res://Images/FrogGameLogo.png" id="2_k2ku3"]
+[ext_resource type="Script" path="res://scenes/levels/main_menu.gd" id="1_4s5o1"]
+[ext_resource type="Texture2D" uid="uid://dl1yuogi0o38n" path="res://Images/newLogo.png" id="2_3ia0r"]
 
 [node name="MainMenu" type="Node"]
+script = ExtResource("1_4s5o1")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,17 +15,65 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_0o0sv")
+stretch_mode = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Logo" type="TextureRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = -120.0
+offset_right = 300.0
+offset_bottom = 480.0
+grow_horizontal = 2
+texture = ExtResource("2_3ia0r")
+
+[node name="PlayButton" type="Button" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -600.0
-offset_top = -600.0
-offset_right = 600.0
-offset_bottom = 600.0
+offset_left = -188.0
+offset_top = -8.0
+offset_right = 190.0
+offset_bottom = 65.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_k2ku3")
+theme_override_font_sizes/font_size = 50
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = 96.0
+offset_right = 190.0
+offset_bottom = 169.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Options"
+
+[node name="ExitButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = 200.0
+offset_right = 190.0
+offset_bottom = 273.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit
+"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
