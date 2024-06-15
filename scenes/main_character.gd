@@ -9,6 +9,8 @@ const JUMP_VELOCITY = -450.0
 @onready var appearingParticle = preload("res://scenes/appearing_particle.tscn")
 @onready var marker_2d = $Marker2D
 
+@onready var dust = $"../Dust"
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var last_direction = 1
@@ -50,6 +52,7 @@ func _physics_process(delta):
 	# Handle jump.
 	#if Input.is_action_just_pressed("jump") and is_on_floor():
 	if Input.is_action_just_pressed("jump") and jump_count < jump_max:
+		dust.emitting = true
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
 
